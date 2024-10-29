@@ -3,6 +3,7 @@ import {login} from './CRUD/controllers/loginController'
 import {Create} from './CRUD/controllers/creatUser'
 import {getUsers} from './CRUD/controllers/getUsersController'
 import autentificacaoJWT from './middlewares/global.middlewares'
+import {pdfGenerate} from './CRUD/controllers/pdfGenerate'
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.post('/create', (req: Request, res: Response) => {
 });
 
 router.get('/rotaPrivada', autentificacaoJWT, (req: Request, res: Response) => {
-    res.json({message:"voce tem permissao"})
+    return new pdfGenerate().generatePDF(req, res);
 });
 
 
